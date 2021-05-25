@@ -1,10 +1,12 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import {Font} from 'expo';
 import Tabs from './navigation/tabs'
 import {Home,Restaurant,OrderDelivary} from "./screens"
 
 const Stack = createStackNavigator();
+
 
 const App = () => {
     return(

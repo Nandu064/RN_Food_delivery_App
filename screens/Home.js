@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text, StyleSheet, TouchableOpacity, Image, FlatList
 import { COLORS, icons,images, SIZES, FONTS } from "../constants"
 
 
-const  Home = () => {
+const  Home = ({navigation}) => {
 
 // Dummy Data for data rendering
 
@@ -76,7 +76,7 @@ const  Home = () => {
     const restaurantData = [
         {
             id: 1,
-            name: "ByProgrammers Burger",
+            name: "Domino's",
             rating: 4.8,
             categories: [5, 7],
             priceRating: affordable,
@@ -97,7 +97,7 @@ const  Home = () => {
                     photo: images.crispy_chicken_burger,
                     description: "Burger with crispy chicken, cheese and lettuce",
                     calories: 200,
-                    price: 10
+                    price: 150
                 },
                 {
                     menuId: 2,
@@ -105,7 +105,7 @@ const  Home = () => {
                     photo: images.honey_mustard_chicken_burger,
                     description: "Crispy Chicken Burger with Honey Mustard Coleslaw",
                     calories: 250,
-                    price: 15
+                    price: 170
                 },
                 {
                     menuId: 3,
@@ -113,14 +113,14 @@ const  Home = () => {
                     photo: images.baked_fries,
                     description: "Crispy Baked French Fries",
                     calories: 194,
-                    price: 8
+                    price:60
                 }
             ]
         },
         {
             id: 2,
-            name: "ByProgrammers Pizza",
-            rating: 4.8,
+            name: "Pizza House",
+            rating: 4.1,
             categories: [2, 4, 6],
             priceRating: expensive,
             photo: images.pizza_restaurant,
@@ -140,7 +140,7 @@ const  Home = () => {
                     photo: images.hawaiian_pizza,
                     description: "Canadian bacon, homemade pizza crust, pizza sauce",
                     calories: 250,
-                    price: 15
+                    price: 149
                 },
                 {
                     menuId: 5,
@@ -148,7 +148,7 @@ const  Home = () => {
                     photo: images.pizza,
                     description: "Fresh tomatoes, aromatic basil pesto and melted bocconcini",
                     calories: 250,
-                    price: 20
+                    price: 219
                 },
                 {
                     menuId: 6,
@@ -156,7 +156,7 @@ const  Home = () => {
                     photo: images.tomato_pasta,
                     description: "Pasta with fresh tomatoes",
                     calories: 100,
-                    price: 10
+                    price: 199
                 },
                 {
                     menuId: 7,
@@ -164,14 +164,14 @@ const  Home = () => {
                     photo: images.salad,
                     description: "Finely chopped lettuce, tomatoes, cucumbers",
                     calories: 100,
-                    price: 10
+                    price: 129
                 }
             ]
         },
         {
             id: 3,
-            name: "ByProgrammers Hotdogs",
-            rating: 4.8,
+            name: "Belgium Waffel House",
+            rating: 3.8,
             categories: [3],
             priceRating: expensive,
             photo: images.hot_dog_restaurant,
@@ -191,14 +191,14 @@ const  Home = () => {
                     photo: images.chicago_hot_dog,
                     description: "Fresh tomatoes, all beef hot dogs",
                     calories: 100,
-                    price: 20
+                    price: 219
                 }
             ]
         },
         {
             id: 4,
-            name: "ByProgrammers Sushi",
-            rating: 4.8,
+            name: "Sushi Point",
+            rating: 4.3,
             categories: [8],
             priceRating: expensive,
             photo: images.japanese_restaurant,
@@ -218,14 +218,14 @@ const  Home = () => {
                     photo: images.sushi,
                     description: "Fresh salmon, sushi rice, fresh juicy avocado",
                     calories: 100,
-                    price: 50
+                    price: 300
                 }
             ]
         },
         {
             id: 5,
-            name: "ByProgrammers Cuisine",
-            rating: 4.8,
+            name: "South Indian Cuisine",
+            rating: 4.5,
             categories: [1, 2],
             priceRating: affordable,
             photo: images.noodle_shop,
@@ -245,7 +245,7 @@ const  Home = () => {
                     photo: images.kolo_mee,
                     description: "Noodles with char siu",
                     calories: 200,
-                    price: 5
+                    price: 149
                 },
                 {
                     menuId: 11,
@@ -253,7 +253,7 @@ const  Home = () => {
                     photo: images.sarawak_laksa,
                     description: "Vermicelli noodles, cooked prawns",
                     calories: 300,
-                    price: 8
+                    price: 200
                 },
                 {
                     menuId: 12,
@@ -261,7 +261,7 @@ const  Home = () => {
                     photo: images.nasi_lemak,
                     description: "A traditional Malay rice dish",
                     calories: 300,
-                    price: 8
+                    price: 150
                 },
                 {
                     menuId: 13,
@@ -269,7 +269,7 @@ const  Home = () => {
                     photo: images.nasi_briyani_mutton,
                     description: "A traditional Indian rice dish with mutton",
                     calories: 300,
-                    price: 8
+                    price: 200
                 },
 
             ]
@@ -277,7 +277,7 @@ const  Home = () => {
         {
 
             id: 6,
-            name: "ByProgrammers Dessets",
+            name: "Dessets House",
             rating: 4.9,
             categories: [9, 10],
             priceRating: affordable,
@@ -298,7 +298,7 @@ const  Home = () => {
                     photo: images.teh_c_peng,
                     description: "Three Layer Teh C Peng",
                     calories: 100,
-                    price: 2
+                    price: 120
                 },
                 {
                     menuId: 13,
@@ -306,7 +306,7 @@ const  Home = () => {
                     photo: images.ice_kacang,
                     description: "Shaved Ice with red beans",
                     calories: 100,
-                    price: 3
+                    price: 300
                 },
                 {
                     menuId: 14,
@@ -314,7 +314,7 @@ const  Home = () => {
                     photo: images.kek_lapis,
                     description: "Layer cakes",
                     calories: 300,
-                    price: 20
+                    price: 250
                 }
             ]
 
@@ -332,6 +332,11 @@ const  Home = () => {
         let restaurantList = restaurantData.filter(a=>a.categories.includes(category.id))
         setRestaurants(restaurantList)
         setSelectedCategory(category)
+    }function getCategoryNameById(id){
+        let category = categories.filter(a=>a.id==id)
+        if(category.length > 0)
+            return category[0].name
+        return ""
     }
     function renderHeader() {
         return (
@@ -347,8 +352,8 @@ const  Home = () => {
                         source={icons.nearby}
                         resizeMode="contain"
                         style={{
-                            width:30,
-                            height:30
+                            width:25,
+                            height:25
                         }}
 
                     />
@@ -378,8 +383,8 @@ const  Home = () => {
                         source={icons.basket}
                         resizeMode="contain"
                         style={{
-                            width:30,
-                            height:30
+                            width:25,
+                            height:25
                         }}
                     />
 
@@ -454,13 +459,17 @@ const  Home = () => {
         const renderItem = ({ item }) => (
             <TouchableOpacity
                 style={{ marginBottom: SIZES.padding * 2 }}
-                // onPress={() => navigation.navigate("Restaurant", {
-                //     item,
-                //     currentLocation
-                // })}
+                onPress={() => navigation.navigate("Restaurant", {
+                    item,
+                    currentLocation
+                })}
             >
                 {/* Image */}
-                <View>
+                <View
+                    style={{
+                        marginBottom: SIZES.padding
+                    }}
+                >
                     <Image
                         source={item.photo}
                         resizeMode="cover"
@@ -470,6 +479,68 @@ const  Home = () => {
                             borderRadius: SIZES.radius
                         }}
                     />
+
+                    <View
+                        style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            height: 50,
+                            width: SIZES.width * 0.3,
+                            backgroundColor: COLORS.white,
+                            borderTopRightRadius: SIZES.radius,
+                            borderBottomLeftRadius: SIZES.radius,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            ...styles.shadow
+                        }}
+                    >
+                        <Text style={{ ...FONTS.h4 }}>{item.duration}</Text>
+                    </View>
+                </View>
+
+                {/* Restaurant Info */}
+                <Text style={{ ...FONTS.body2 }}>{item.name}</Text>
+
+                <View
+                    style={{
+                        marginTop: SIZES.padding,
+                        flexDirection: 'row'
+                    }}
+                >
+                    {/* Rating */}
+                    <Image
+                        source={icons.star}
+                        style={{
+                            height: 20,
+                            width: 20,
+                            tintColor: COLORS.primary,
+                            marginRight: 10
+                        }}
+                    />
+                    <Text style={{ ...FONTS.body3 }}>{item.rating}</Text>
+
+                    {/* Categories */}
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            marginLeft: 10
+                        }}
+                    >
+                        {
+                            item.categories.map((categoryId) => {
+                                return (
+                                    <View
+                                        style={{ flexDirection: 'row' }}
+                                        key={categoryId}
+                                    >
+                                        <Text style={{ ...FONTS.h3, color: COLORS.darkgray }}> . </Text>
+                                        <Text style={{ ...FONTS.body3 }}>{getCategoryNameById(categoryId)}</Text>
+                                        
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
                 </View>
             </TouchableOpacity>
         )
