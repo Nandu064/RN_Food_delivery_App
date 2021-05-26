@@ -83,8 +83,8 @@ const  Home = ({navigation}) => {
             photo: images.burger_restaurant_1,
             duration: "30 - 45 min",
             location: {
-                latitude: 1.5347282806345879,
-                longitude: 110.35632207358996,
+                latitude: 15.488569,
+                longitude: 78.493093,
             },
             courier: {
                 avatar: images.avatar_1,

@@ -10,11 +10,68 @@ const  Restaurant = ({ route,navigation }) => {
     const scrollX = new Animated.Value(0);
     const [restaurant, setRestaurant] = React.useState(null);
     const [currentLocation, setCurrentLocation] = React.useState(null);
+    const [orderItems, setOrderItems] = React.useState([]);
+
     React.useEffect(() => {
         let {item,currentLocation} = route.params;
         setRestaurant(item)
         setCurrentLocation(currentLocation)
     })
+    function editOrder(action, menuId, price) {
+        let orderList = orderItems.slice()
+        let item = orderList.filter(a => a.menuId == menuId)
+
+        if (action == "+") {
+            if (item.length > 0) {
+                let newQty = item[0].qty + 1
+                item[0].qty = newQty
+                item[0].total = item[0].qty * price
+            } else {
+                const newItem = {
+                    menuId: menuId,
+                    qty: 1,
+                    price: price,
+                    total: price
+                }
+                orderList.push(newItem)
+            }
+
+            setOrderItems(orderList)
+        } else {
+            if (item.length > 0) {
+                if (item[0]?.qty > 0) {
+                    let newQty = item[0].qty - 1
+                    item[0].qty = newQty
+                    item[0].total = newQty * price
+                }
+            }
+
+            setOrderItems(orderList)
+        }
+    }
+
+     function getOrderQty(menuId) {
+        let orderItem = orderItems.filter(a => a.menuId == menuId)
+
+        if (orderItem.length > 0) {
+            return orderItem[0].qty
+        }
+
+        return 0
+    }
+
+    function getBasketItemCount() {
+        let itemCount = orderItems.reduce((a, b) => a + (b.qty || 0), 0)
+
+        return itemCount
+    }
+
+    function sumOrder() {
+        let total = orderItems.reduce((a, b) => a + (b.total || 0), 0)
+
+        return total.toFixed(2)
+    }
+
     function renderHeader(){
         return(
             <View style={{ flexDirection:'row' }}>
@@ -120,7 +177,7 @@ const  Restaurant = ({ route,navigation }) => {
                                             borderTopLeftRadius: 25,
                                             borderBottomLeftRadius: 25
                                         }}
-                                        // onPress={() => editOrder("-", item.menuId, item.price)}
+                                        onPress={() => editOrder("-", item.menuId, item.price)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}>-</Text>
                                     </TouchableOpacity>
@@ -134,7 +191,7 @@ const  Restaurant = ({ route,navigation }) => {
                                         }}
                                     >
                                     {/* {getOrderQty(item.menuId)} */}
-                                        <Text style={{ ...FONTS.h2 }}>5</Text>
+                                        <Text style={{ ...FONTS.h2 }}>{getOrderQty(item.menuId)}</Text>
                                     </View>
 
                                     <TouchableOpacity
@@ -146,7 +203,7 @@ const  Restaurant = ({ route,navigation }) => {
                                             borderTopRightRadius: 25,
                                             borderBottomRightRadius: 25
                                         }}
-                                        // onPress={() => editOrder("+", item.menuId, item.price)}
+                                        onPress={() => editOrder("+", item.menuId, item.price)}
                                     >
                                         <Text style={{ ...FONTS.body1 }}>+</Text>
                                     </TouchableOpacity>
@@ -265,8 +322,8 @@ const  Restaurant = ({ route,navigation }) => {
                         }}
                     >
                     {/* {getBasketItemCount()}  {sumOrder()} */}
-                        <Text style={{ ...FONTS.h3 }}> 5 items in Cart</Text>
-                        <Text style={{ ...FONTS.h3 }}>Rs.10000</Text>
+                        <Text style={{ ...FONTS.h3 }}> {getBasketItemCount()} items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}>Rs.{sumOrder()}</Text>
                     </View>
 
                     <View
@@ -305,7 +362,7 @@ const  Restaurant = ({ route,navigation }) => {
                     </View>
 
                     {/* Order Button */}
-                    {/* <View
+                    <View
                         style={{
                             padding: SIZES.padding * 2,
                             alignItems: 'center',
@@ -320,15 +377,28 @@ const  Restaurant = ({ route,navigation }) => {
                                 alignItems: 'center',
                                 borderRadius: SIZES.radius
                             }}
-                            // onPress={() => navigation.navigate("OrderDelivery", {
-                            //     restaurant: restaurant,
-                            //     currentLocation: currentLocation
-                            // })}
+                            onPress={() => navigation.navigate("OrderDelivery", {
+                                restaurant: restaurant,
+                                currentLocation: currentLocation
+                            })}
                         >
-                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
+                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Place Order</Text>
                         </TouchableOpacity>
-                    </View> */}
+                    </View>
                 </View>
+                {isIphoneX() &&
+                    <View
+                        style={{
+                            position: 'absolute',
+                            bottom: -34,
+                            left: 0,
+                            right: 0,
+                            height: 34,
+                            backgroundColor: COLORS.white
+                        }}
+                    >
+                    </View>
+                }
             </View>
         )
     }
