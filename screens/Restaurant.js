@@ -88,7 +88,7 @@ const  Restaurant = ({ route,navigation }) => {
                         resizeMode="contain"
                         style={{
                             width: 30,
-                            height: 30
+                            height: 45
                         }}
                     />
 
