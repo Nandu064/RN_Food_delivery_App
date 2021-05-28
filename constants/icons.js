@@ -23,6 +23,12 @@ export const basket = require("../assets/icons/shopping-basket.png");
 export const star = require("../assets/icons/star.png");
 export const sushi = require("../assets/icons/sushi.png");
 export const user = require("../assets/icons/user.png");
+export const phone = require("../assets/icons/phone.png");
+export const mail = require("../assets/icons/mail.png");
+export const support = require("../assets/icons/support.png");
+export const creditCard = require("../assets/icons/credit-card.png");
+export const settings = require("../assets/icons/settings.png");
+
 
 export default {
     back,
@@ -37,11 +43,13 @@ export default {
     like,
     list,
     location,
+    mail,
     master_card,
     nearby,
     noodle,
     pin,
     pizza,
+    phone,
     red_pin,
     rice_bowl,
     salad,
@@ -50,4 +58,7 @@ export default {
     star,
     sushi,
     user,
+    support,
+    creditCard,
+    settings,
 }

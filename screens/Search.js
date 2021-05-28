@@ -1,8 +1,25 @@
 import React from 'react'
 import {View,Text,StyleSheet,SafeAreaView,TouchableOpacity,Image,TextInput} from 'react-native'
 import { COLORS, icons,images, SIZES, FONTS } from "../constants"
+import {
+    initialCurrentLocation,
+    categoryData,
+    affordable,
+    fairPrice,
+    expensive,
+    restaurantData,
+} from '../includes/DummyData'
 
 export default function Search({navigation}) {
+    const [searchTerm,setSearchTerm] = React.useState();
+    const [restaurants, setRestaurants] = React.useState(restaurantData)
+    function onSearch(searchTerm){
+
+        // filter restaurant data based on slected category.
+        let restaurantList = restaurantData.filter(a=>a.categories.includes(searchTerm))
+        setRestaurants(restaurantList)
+        setSearchTerm(searchTerm)
+    }
     function renderHeader() {
         return (
             <View style={{flexDirection:'row', height:50}}>
@@ -37,6 +54,7 @@ export default function Search({navigation}) {
                         <TextInput
                             style={{...FONTS.h3,height:40,fontSize:20}}
                             placeholder="Enter restaurant or Item"
+                            onChangeText={(text)=>{setSearchTerm(text)}}
                         />
                     </View>
                 </View>
@@ -46,6 +64,7 @@ export default function Search({navigation}) {
                         paddingRight: SIZES.padding * 2,
                         justifyContent: 'center',
                     }}
+                    
                 >
                     <Image
                         source={icons.search}
@@ -62,9 +81,17 @@ export default function Search({navigation}) {
             </View>
         )
     }
+    function renderSearchResult(){
+        return (
+            <View>
+                <Text>{searchTerm}</Text>
+            </View>
+        )
+    }
     return (
        <SafeAreaView style={[styles.container,styles.androidSafeArea]}>
             {renderHeader()}
+            {renderSearchResult()}
         </SafeAreaView>
     )
 }
